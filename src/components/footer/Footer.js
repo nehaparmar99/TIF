@@ -22,6 +22,7 @@ const Image = styled.img`
   width:10%;
 margin-top:35px;
 color:red;
+filter: invert(1) saturate(1) hue-rotate(0deg) brightness(1);
 @media (max-width: 768px) {
        height: 20%;
   width:30%;
@@ -69,7 +70,7 @@ color:red;
   fill:red;
 }
 & img:hover{
-  color:#2acfcf;
+  filter: invert(0) sepia(1) saturate(1) hue-rotate(0deg) brightness(1)
 }
 @media (max-width: 768px) {
        height: 20%;

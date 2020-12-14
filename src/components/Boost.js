@@ -2,7 +2,6 @@ import React from 'react'
 import styled from "styled-components";
 import img from "../assets/bg-boost-desktop.svg";
 const Container = styled.div`
-margin-top:10px;
         background-color:purple;
         padding:30px;
         text-align:center;

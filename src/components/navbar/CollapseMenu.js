@@ -65,9 +65,9 @@ text-align:center;
   & hr{
     width:50%;
     color:#bfbfbf;
-    align:center;
-    margin:10px;
-    margin-left:80px;
+    margin:auto;
+     margin-top:10px;
+    margin-bottom:10px;
   }
   & button{
      color: white;

@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import img from "../assets/bg-boost-desktop.svg";
 import axios from "axios"
 import Link from './Link';
+const MAIN = styled.div`
+   padding:0;
+   margin:0;
+`;
 const Input = styled.input`
     padding: 1em;
     height:40px;
@@ -23,12 +27,17 @@ const Container = styled.div`
         width:80%;
         margin:auto;
         border-radius:10px;
+        @media (max-width: 768px) {
+     width:100%;
+    }
 `;
 const Form = styled.form`
- padding:2%;
     display:flex;
     flex-wrap:wrap;
 justify-content: space-around;
+padding:3%;
+padding-left:2%;
+padding-right:2%;
 `;
 
 const Button = styled.button`
@@ -42,24 +51,14 @@ const Button = styled.button`
   padding-left:35px;
    padding-right:35px;
   border-radius: 10px;
+  @media (max-width: 768px) {
+     width:80%;
+
+    }
 `;
 function Short() {
     const [url, setURL] = useState("");
     const [urls,setURLS]=useState({"google.com":'https://shrtco.de/Edfgvg'})
-//       useEffect(() => {
-//     db.collection('urls').orderBy('timestamp','desc').onSnapshot(snapshot => {
-//       setURLs(snapshot.docs.map(doc => (
-//         {
-//           id: doc.id,
-//               ourl: doc.data().ourl,
-//               surl:doc.data().surl
-//         }
-//       )
-//       ))
-//     })
-//   }, []
-//   //loads once when the app loads
-//   )
 
     const shorturl = (e) => {
         e.preventDefault();
@@ -85,6 +84,7 @@ const urll = "https://api.shrtco.de/v2/shorten";
 
 
     return (
+        <MAIN>
         <Container>
             <Form>
   <Input value={url} onChange={(e)=>(setURL(e.target.value))} placeholder="Shorten a link here..." />
@@ -92,6 +92,7 @@ const urll = "https://api.shrtco.de/v2/shorten";
   Shorten It!
         </Button>   
             </Form>
+             </Container>
             <ul>{
                 // ourl.map((url,index) => (
                 //     <h1>{url}:</h1>
@@ -107,7 +108,7 @@ const urll = "https://api.shrtco.de/v2/shorten";
                     )
             }
       </ul> 
-        </Container>
+       </MAIN>
     )
 }
 

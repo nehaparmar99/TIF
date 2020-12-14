@@ -27,7 +27,7 @@ class App extends Component {
         <Home></Home>
         <Short></Short>
         <Feature></Feature>
-        <Boost></Boost>
+        <Boost></Boost> 
         <Footer></Footer>
       </>
     )

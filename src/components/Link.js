@@ -1,57 +1,77 @@
 import React ,{ useRef, useState } from 'react'
 import styled from 'styled-components';
 const Container = styled.div`
-padding:20px;
-//    display:flex;
-//    flex-wrap:wrap;
-   & div{
+background-color:#EBE5F3;
+// padding:20px;
+height:100%;
+margin:0;
+`;
+const Shortens = styled.div`
+width:80%;
+margin:auto;
+padding-top:15px;
+padding-bottom:15px;
+`;
+const DIV = styled.div`
        background-color:white;
-   border-radius:10px;
-   padding:5px;
+   border-radius:5px;
+   padding:10px;
    display:flex;
    flex-wrap:wrap;
    justify-content:space-between;
-    margin: 1em;
     vertical-align:center;
-   }
-  
+    & h2{
+      margin-top:5px;
+       font-size:20px;
+    }
+      & p{
+        margin-top:5px;
+      font-weight:bold;
+      font-size:20px;
+      color:#2acfcf;
+      @media (max-width: 768px) {
+      margin-bottom:10px;
+      margin-top:10px;
+      
+    }
+  }
+     @media (max-width: 768px) {
+      flex-direction:column;
+      // flex-wrap:wrap;
+    }
 `;
 const Button = styled.button`
   color: white;
-  border: 2px solid #2acfcf;
-  background:#2acfcf;
-  font-size: 1.6em;
+  border: 2px solid ;
+  font-size:18px;
   font-weight:bold;
 //   margin: 1em;
-//   padding: 0.25em 1em;
-padding-left:10px;
-padding-right:10px;
-  border-radius: 20px;
+   padding: 0.25em;
+padding-left:12px;
+padding-right:12px;
+  border-radius: 6px;
   cursor:pointer;
+
 `;
 function Link(props) {
-    const textAreaRef = useRef(null);
   const [copySuccess, setCopySuccess] = useState("Copy");
+    const [color, setColor] = useState("#2acfcf");
     const copyurl = (e) => {
         console.log("clicked")
-          textAreaRef.current.select();
-    document.execCommand('copy');
-    e.target.focus();
-    setCopySuccess('Copied!');
+        navigator.clipboard.writeText(props.value)
+        setColor("black");
+        setCopySuccess('Copied!');
 }
-
 
     return (
         <Container>
-            <div>
+            <Shortens>
+            <DIV>
                 <h2>{props.original}</h2>
-                {/* <h2>{props.value}</h2> */}
-                  <textarea
-          ref={textAreaRef}
-          value={props.value}
-        />
-                <Button type="submit" onClick={copyurl}>{ copySuccess}</Button>
-        </div>   
+                <p>{props.value}</p>
+                <Button type="submit" onClick={copyurl} style={{background:color}}>{copySuccess}</Button>
+                </DIV>  
+        </Shortens>        
         </Container>
     )
 }

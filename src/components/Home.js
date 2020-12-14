@@ -13,13 +13,19 @@ const FlexContainer = styled.div`
 //   padding: 0 2rem;
 `;
 const Main = styled.div`
-padding:20px;
+padding-top:20px;
+padding-bottom:20px;
 display: flex;
 flex-direction:column;
 justify-content:center;
-// align-items:center;
+align-items:flex-start;
  font-size:24px;
 flex-wrap:wrap;
+& div{
+  @media (max-width: 768px) {
+    order:2;
+    }
+}
 & p{
 color:gray;
 }
@@ -34,6 +40,10 @@ width:40%;
   font-weight:bold;
   border:2px solid #2acfcf;
   cursor:pointer;
+    @media (max-width: 768px) {
+      width:100%;
+
+    }
 }
 @media (max-width: 768px) {
       text-align:center;
@@ -60,11 +70,10 @@ function Home() {
           <div>
           <h1>More than just</h1>
             <h1>shorter links</h1>
-            </div>
                 <p>Build your brand's recognition and get detailed <br />
                 insights on how your links are performing</p>
            <button>Get started</button>
-            </Main> 
+           </div>  </Main> 
 
              <Image src={logo} alt="Company Logo" />
         </FlexContainer>
