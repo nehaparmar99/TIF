@@ -8,54 +8,76 @@ const MAIN = styled.div`
    margin:0;
 `;
 const Input = styled.input`
-    padding: 1em;
+     padding: 1em;
     height:40px;
-    margin-top:16px;
+    // margin-top:16px;
 	color: red;
 	background: white;
 	border: none;
     border-radius: 3px;
     width:80%;
+      @media (max-width: 768px) {
+     width:80%;
+     margin-top:20px;
+}
 `;
 const Container = styled.div`
-  background:url(${img});
+   background:url(${img});
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-color: #3b3054;
         background-size:stretch;
         background-color:#3b3054;
+        border-radius:10px;
         width:80%;
         margin:auto;
-        border-radius:10px;
-        @media (max-width: 768px) {
-     width:100%;
-    }
 `;
 const Form = styled.form`
+// width:80%;
+// margin:auto;
+// padding-bottom:15px;
     display:flex;
     flex-wrap:wrap;
 justify-content: space-around;
 padding:3%;
 padding-left:2%;
 padding-right:2%;
-`;
-
-const Button = styled.button`
-  color: white;
+& button{
+     color: white;
   border: 2px solid #2acfcf;
   background:#2acfcf;
   font-size: 1.6em;
   font-weight:bold;
-  margin: 1em;
-  padding: 10px;
+//   margin-top:15px;
+//   margin: 1em;
+//   padding: 10px;
   padding-left:35px;
    padding-right:35px;
   border-radius: 10px;
   @media (max-width: 768px) {
      width:80%;
-
-    }
+     margin-top:20px;
+     margin-bottom:20px;
+}
+}
 `;
+
+// const Button = styled.button`
+//   color: white;
+//   border: 2px solid #2acfcf;
+//   background:#2acfcf;
+//   font-size: 1.6em;
+//   font-weight:bold;
+//   margin: 1em;
+//   padding: 10px;
+//   padding-left:35px;
+//    padding-right:35px;
+//   border-radius: 10px;
+//   @media (max-width: 768px) {
+//      width:80%;
+
+//     }
+// `;
 function Short() {
     const [url, setURL] = useState("");
     const [urls,setURLS]=useState({"google.com":'https://shrtco.de/Edfgvg'})
@@ -84,16 +106,16 @@ const urll = "https://api.shrtco.de/v2/shorten";
 
 
     return (
-        <MAIN>
+        <>
         <Container>
             <Form>
   <Input value={url} onChange={(e)=>(setURL(e.target.value))} placeholder="Shorten a link here..." />
-                 <Button disabled={!url} type="submit" onClick={shorturl}  >
+                 <button disabled={!url} type="submit" onClick={shorturl}  >
   Shorten It!
-        </Button>   
+        </button>   
             </Form>
              </Container>
-            <ul>{
+            <>{
                 // ourl.map((url,index) => (
                 //     <h1>{url}:</h1>
                 // ))
@@ -107,8 +129,8 @@ const urll = "https://api.shrtco.de/v2/shorten";
                     )
                     )
             }
-      </ul> 
-       </MAIN>
+      </> 
+       </>
     )
 }
 
