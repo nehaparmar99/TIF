@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import img from "../assets/bg-boost-desktop.svg";
 import axios from "axios"
+import Link from './Link';
 const Input = styled.input`
     padding: 1em;
     height:40px;
@@ -25,14 +26,6 @@ const Container = styled.div`
 `;
 const Form = styled.form`
  padding:2%;
-// text-align:center;
-// vertical-align:middle;
-// background:#3b3054;
-
-// border: none;
-// margin-left:65px;
-// margin-right:65px;
-    // border-radius: 10px;
     display:flex;
     flex-wrap:wrap;
 justify-content: space-around;
@@ -52,44 +45,68 @@ const Button = styled.button`
 `;
 function Short() {
     const [url, setURL] = useState("");
+    const [urls,setURLS]=useState({"google.com":'https://shrtco.de/Edfgvg'})
+//       useEffect(() => {
+//     db.collection('urls').orderBy('timestamp','desc').onSnapshot(snapshot => {
+//       setURLs(snapshot.docs.map(doc => (
+//         {
+//           id: doc.id,
+//               ourl: doc.data().ourl,
+//               surl:doc.data().surl
+//         }
+//       )
+//       ))
+//     })
+//   }, []
+//   //loads once when the app loads
+//   )
+
     const shorturl = (e) => {
         e.preventDefault();
         console.log("clicked");
-    //      fetch("https://api.shrtco.de/v2/shorten/", {
-    //   method: "POST",
-    //    headers: {
-    //       "Content-type": "application/json"
-    //     }, 
-    //   body: JSON.stringify({
-    //     // date:JSON.stringify(startDate),
-    //      url:url
-    //     }),
-    // }) 
-    // .then(res => console.log(res))
-    // .catch(err => console.log(err));
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        // console.log(urls)
 const urll = "https://api.shrtco.de/v2/shorten";
-     axios.post(proxyurl+urll, {
-     url:url,
+        axios.get(urll, {
+            params: {
+                url: url,
+            }
 })
 .then((response) => {
-  console.log(response);
+    console.log(response.data.result["full_short_link"]);
+    const short = response.data.result["full_short_link"];
+    console.log(short)
+     setURLS({...urls,[url]:short});
+    console.log(urls)
 }, (error) => {
   console.log(error);
 });
         setURL("");
     }
+
+
     return (
         <Container>
             <Form>
-                 {/* <FormControl> */}
-          {/* <Label htmlFor="label">Shorten a link here...</Label> */}
   <Input value={url} onChange={(e)=>(setURL(e.target.value))} placeholder="Shorten a link here..." />
-        {/* </FormControl> */}
-                 <Button disabled={!url} type="submit" onClick={shorturl} variant="contained" color="primary" >
+                 <Button disabled={!url} type="submit" onClick={shorturl}  >
   Shorten It!
         </Button>   
             </Form>
+            <ul>{
+                // ourl.map((url,index) => (
+                //     <h1>{url}:</h1>
+                // ))
+                //   surl.map((url,index) => (
+                //     <h1>{url}:</h1>
+                // ))
+                Object.entries(urls)
+                    .map(([key, value]) => (
+                        // <h1>{key}   :    {value}</h1>
+                        <Link original={key} value={value}></Link>
+                    )
+                    )
+            }
+      </ul> 
         </Container>
     )
 }

@@ -34,7 +34,7 @@ flex-direction:column;
 flex-wrap:wrap;
 justify-content:flex-start;
 align-items:flex-start;
-padding:20px;
+flex-shrink:1;
 `;
 function Feature() {
     return (
